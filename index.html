@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oblivian</title>
+    <meta
+      name="description"
+      content="Oblivian OS: an aesthetic all-in-one desktop experience with messaging, app downloader, wallpapers, music, and game launchers."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="wallpaper-layer"></div>
+
+    <div class="desktop" id="desktop">
+      <header class="topbar chrome">
+        <div class="topbar-left">
+          <span class="brand">OblivianOS</span>
+          <span class="status-pill">Live Desktop</span>
+        </div>
+
+        <div class="topbar-center">
+          <div class="searchbar">
+            <span>⌕</span>
+            <input type="text" id="global-search" placeholder="Search apps, games, friends..." />
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <span id="time-display">--:--</span>
+          <button class="topbar-button" id="focus-launcher">Launcher</button>
+        </div>
+      </header>
+
+      <main class="desktop-main">
+        <aside class="desktop-sidebar chrome">
+          <div class="sidebar-title">Workspace</div>
+          <nav class="sidebar-nav">
+            <button class="nav-item active" data-app="startMenu">Home</button>
+            <button class="nav-item" data-app="appStore">App Center</button>
+            <button class="nav-item" data-app="messages">Messages</button>
+            <button class="nav-item" data-app="wallpapers">Wallpapers</button>
+            <button class="nav-item" data-app="music">Music</button>
+            <button class="nav-item" data-app="settings">Settings</button>
+          </nav>
+        </aside>
+
+        <section class="desktop-area" id="desktop-area">
+          <div class="welcome-card chrome">
+            <div>
+              <p class="eyebrow">Welcome back</p>
+              <h1>Oblivian</h1>
+            </div>
+            <div class="welcome-actions">
+              <button class="primary-btn" data-app="appStore">Open App Center</button>
+              <button class="secondary-btn" data-app="messages">Open Messages</button>
+            </div>
+          </div>
+
+          <div class="quick-grid">
+            <div class="quick-card chrome" data-app="appStore">
+              <span>🎮</span>
+              <strong>2.3K+ games</strong>
+              <small>Curated launch library</small>
+            </div>
+            <div class="quick-card chrome" data-app="messages">
+              <span>💬</span>
+              <strong>Chat</strong>
+              <small>Search friends and text</small>
+            </div>
+            <div class="quick-card chrome" data-app="wallpapers">
+              <span>🖼️</span>
+              <strong>Wallpaper Lab</strong>
+              <small>Dynamic aesthetic backgrounds</small>
+            </div>
+            <div class="quick-card chrome" data-app="proxy">
+              <span>🌐</span>
+              <strong>Secure Search</strong>
+              <small>Web access + browsing</small>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <div class="dock chrome" id="dock">
+        <button class="dock-item active" data-app="startMenu" title="Launcher">🏠</button>
+        <button class="dock-item" data-app="appStore" title="App Center">🕹️</button>
+        <button class="dock-item" data-app="messages" title="Messages">💬</button>
+        <button class="dock-item" data-app="wallpapers" title="Wallpapers">🖼️</button>
+        <button class="dock-item" data-app="music" title="Music">🎵</button>
+        <button class="dock-item" data-app="settings" title="Settings">⚙️</button>
+        <button class="dock-item" data-app="proxy" title="Web">🌐</button>
+        <button class="dock-item" data-app="ps4" title="PS4">🎮</button>
+        <button class="dock-item" data-app="doblox" title="Doblox">🧩</button>
+      </div>
+    </div>
+
+    <div id="window-layer">
+      <section class="window chrome" data-app="startMenu">
+        <div class="window-header">
+          <div class="window-title">Oblivian Launcher</div>
+          <div class="window-controls">
+            <button class="window-control">—</button>
+            <button class="window-control">□</button>
+            <button class="window-control close-window" data-close="startMenu">×</button>
+          </div>
+        </div>
+        <div class="window-body launcher-body">
+          <div class="launcher-grid" id="launcher-grid"></div>
+        </div>
+      </section>
+
+      <section class="window chrome" data-app="appStore">
+        <div class="window-header">
+          <div class="window-title">App Center</div>
+          <div class="window-controls">
+            <button class="window-control">—</button>
+            <button class="window-control">□</button>
+            <button class="window-control close-window" data-close="appStore">×</button>
+          </div>
+        </div>
+        <div class="window-body app-body">
+          <div class="module-header">
+            <div>
+              <p class="eyebrow">Oblivian Game Catalog</p>
+              <h3>2.3K+ titles</h3>
+            </div>
+            <div class="filter-group">
+              <button class="tag active">Featured</button>
+              <button class="tag">Action</button>
+              <button class="tag">Adventure</button>
+              <button class="tag">Arcade</button>
+            </div>
+          </div>
+          <div class="library-grid" id="library-grid"></div>
+        </div>
+      </section>
+
+      <section class="window chrome" data-app="messages">
+        <div class="window-header">
+          <div class="window-title">Messages</div>
+          <div class="window-controls">
+            <button class="window-control">—</button>
+            <button class="window-control">□</button>
+            <button class="window-control close-window" data-close="messages">×</button>
+          </div>
+        </div>
+        <div class="window-body chat-body">
+          <aside class="chat-sidebar">
+            <div class="chat-profile">
+              <label>Set username</label>
+              <input id="username-input" type="text" maxlength="20" placeholder="Choose a username" />
+              <button id="save-username" class="primary-btn small">Save</button>
+            </div>
+
+            <div class="friend-search">
+              <label>Search friends</label>
+              <input id="friend-search" type="text" placeholder="Find username" />
+            </div>
+
+            <div class="friend-list" id="friend-list">
+              <div class="friend-pill">Astra</div>
+              <div class="friend-pill">Neon</div>
+              <div class="friend-pill">Kairo</div>
+              <div class="friend-pill">Milo</div>
+            </div>
+          </aside>
+
+          <div class="chat-panel">
+            <div class="chat-header">
+              <div>
+                <span class="status-dot"></span>
+                <strong id="chat-target">Astra</strong>
+              </div>
+              <span id="chat-status">online</span>
+            </div>
+            <div class="chat-log" id="chat-log"></div>
+            <div class="typing-indicator" id="typing-indicator">Someone is typing...</div>
+            <div class="chat-input-row">
+              <input id="chat-message" type="text" placeholder="Type a message..." />
+              <button id="send-message" class="primary-btn small">Send</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="window chrome" data-app="wallpapers">
+        <div class="window-header">
+          <div class="window-title">Wallpaper Lab</div>
+          <div class="window-controls">
+            <button class="window-control">—</button>
+            <button class="window-control">□</button>
+            <button class="window-control close-window" data-close="wallpapers">×</button>
+          </div>
+        </div>
+        <div class="window-body wallpapers-body">
+          <div class="wallpaper-toolbar">
+            <label class="switch-wrap">
+              <input id="nsfw-toggle" type="checkbox" />
+              <span>18+ Anime Mode</span>
+            </label>
+            <button class="secondary-btn small" id="random-wallpaper">Randomize</button>
+          </div>
+          <div class="wallpaper-grid" id="wallpaper-grid"></div>
+        </div>
+      </section>
+
+      <section class="window chrome" data-app="music">
+        <div class="window-header">
+          <div class="window-title">Oblivian Music</div>
+          <div class="window-controls">
+            <button class="window-control">—</button>
+            <button class="window-control">□</button>
+            <button class="window-control close-window" data-close="music">×</button>
+          </div>
+        </div>
+        <div class="window-body music-body">
+          <div class="module-header">
+            <div>
+              <p class="eyebrow">Streaming</p>
+              <h3>Phonk + synthwave</h3>
+            </div>
+          </div>
+          <div class="music-player">
+            <div class="artwork">♪</div>
+            <div class="track-meta">
+              <div id="track-name">Neon Drift</div>
+              <div id="track-artist">Night Signal</div>
+            </div>
+            <div class="player-controls">
+              <button class="control-btn" id="prev-track">⏮</button>
+              <button class="control-btn primary" id="play-track">▶</button>
+              <button class="control-btn" id="next-track">⏭</button>
+            </div>
+          </div>
+          <div class="music-list" id="music-list"></div>
+        </div>
+      </section>
+
+      <section class="window chrome" data-app="settings">
+        <div class="window-header">
+          <div class="window-title">Settings</div>
+          <div class="window-controls">
+            <button class="window-control">—</button>
+            <button class="window-control">□</button>
+            <button class="window-control close-window" data-close="settings">×</button>
+          </div>
+        </div>
+        <div class="window-body settings-body">
+          <div class="settings-panel">
+            <div class="settings-group">
+              <h4>Display</h4>
+              <label>Theme accent</label>
+              <input type="color" id="accent-picker" value="#7c5cff" />
+            </div>
+            <div class="settings-group">
+              <h4>Appearance</h4>
+              <label class="switch-wrap">
+                <input id="glass-toggle" type="checkbox" checked />
+                <span>Glass UI</span>
+              </label>
+            </div>
+            <div class="settings-group">
+              <h4>System</h4>
+              <button class="secondary-btn small" id="reset-theme">Reset visuals</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="window chrome" data-app="proxy">
+        <div class="window-header">
+          <div class="window-title">Oblivian Search</div>
+          <div class="window-controls">
+            <button class="window-control">—</button>
+            <button class="window-control">□</button>
+            <button class="window-control close-window" data-close="proxy">×</button>
+          </div>
+        </div>
+        <div class="window-body proxy-body">
+          <div class="proxy-bar">
+            <input id="proxy-query" type="text" placeholder="Search the web or open a URL" />
+            <button id="launch-proxy" class="primary-btn small">Open</button>
+          </div>
+          <iframe id="proxy-frame" title="Secure search" src="https://www.google.com/search?q=oblivian+os"></iframe>
+        </div>
+      </section>
+
+      <section class="window chrome" data-app="ps4">
+        <div class="window-header">
+          <div class="window-title">PS4 Emulation</div>
+          <div class="window-controls">
+            <button class="window-control">—</button>
+            <button class="window-control">□</button>
+            <button class="window-control close-window" data-close="ps4">×</button>
+          </div>
+        </div>
+        <div class="window-body ps4-body">
+          <div class="ps4-banner">PS4 emulator sandbox</div>
+          <div class="emu-status">
+            <div class="status-line"><span>Runtime</span><strong>Prepared</strong></div>
+            <div class="status-line"><span>SDK</span><strong>Integrated</strong></div>
+            <div class="status-line"><span>Compatibility</span><strong>Prototype</strong></div>
+          </div>
+          <button class="primary-btn" id="launch-emu">Launch</button>
+          <p class="disclaimer">This is a prototype launcher UI for emulation projects. Real PS4 compatibility and commercial game support depend on native emulation layers and rights ownership.</p>
+        </div>
+      </section>
+
+      <section class="window chrome" data-app="doblox">
+        <div class="window-header">
+          <div class="window-title">Doblox</div>
+          <div class="window-controls">
+            <button class="window-control">—</button>
+            <button class="window-control">□</button>
+            <button class="window-control close-window" data-close="doblox">×</button>
+          </div>
+        </div>
+        <div class="window-body doblox-body">
+          <div class="toolbar-row">
+            <input id="doblox-search" type="text" placeholder="Search Doblox games" />
+            <button class="primary-btn small">Launch</button>
+          </div>
+          <div class="doblox-grid" id="doblox-grid"></div>
+        </div>
+      </section>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
